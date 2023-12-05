@@ -1,0 +1,57 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+}
+
+.calculator {
+  border: 1px solid black;
+  height: 700px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  border-radius: 10px;
+  background: #404040;
+}
+
+.row {
+  display: flex;
+  height: 80px;
+  gap: 10px;
+}
+
+.screen {
+  border: 1px solid black;
+  flex: 1;
+  border-radius: 10px;
+  background: lightgrey;
+}
+
+.number {
+  border: 1px solid black;
+  border-radius: 10px;
+  flex: 1;
+  background: orange;
+}
+
+.operator {
+  border: 1px solid black;
+  flex: 1;
+  border-radius: 10px;
+  background: black;
+}
+
+.word {
+  border: 1px solid black;
+  border-radius: 10px;
+  flex: 1;
+  background: red;
+}
