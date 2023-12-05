@@ -28,46 +28,34 @@ body {
   gap: 10px;
 }
 
-.screen {
+.row div {
   border: 1px solid black;
-  flex: 1;
   border-radius: 10px;
+  display: flex;
+  flex: 1;
+  font-weight: bold;
+  font-size: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.screen {
   background: lightgrey;
 }
 
 .number {
-  border: 1px solid black;
-  border-radius: 10px;
-  display: flex;
-  flex: 1;
   background: orange;
-  font-weight: bold;
-  font-size: 50px;
-  align-items: center;
-  justify-content: center;
 }
 
 .operator {
-  border: 1px solid black;
-  flex: 1;
-  border-radius: 10px;
-  background: black;
-  display: flex;
-  font-weight: bold;
-  font-size: 50px;
-  align-items: center;
-  justify-content: center;
+  background-color: black;
   color: white;
 }
 
+.operator#equals {
+  background: blue;
+}
+
 .word {
-  border: 1px solid black;
-  border-radius: 10px;
-  flex: 1;
-  background: red;
-  display: flex;
-  font-weight: bold;
-  font-size: 50px;
-  align-items: center;
-  justify-content: center;
+  background: green;
 }
