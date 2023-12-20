@@ -63,6 +63,7 @@ function evaluate() {
 }
 
 function handleOperator(e) {
+  //not good
   if (currentNumber !== "" && operator === "") {
     operator = e.target.textContent;
     firstNumber = currentNumber;
