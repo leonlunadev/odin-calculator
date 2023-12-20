@@ -1,17 +1,20 @@
 let firstNumber = "";
-let currentNumber = "";
+
 let operator = "";
 let numberHasDecimal = false;
 let currentValue = 0.0;
+let secondNumber = "";
+let isSecondNumber = false;
 
 const screen = document.querySelector(".screen");
 
 function operate() {
-  if (firstNumber !== "" && operator !== "" && currentNumber !== "") {
+  if (firstNumber !== "" && operator !== "" && secondNumber !== "") {
     evaluate();
     firstNumber = currentValue.toString();
-    currentNumber = "";
+    secondNumber = "";
     numberHasDecimal = false;
+    isSecondNumber = false;
     screen.textContent = firstNumber;
     operator = "";
   }
@@ -19,8 +22,9 @@ function operate() {
 
 function clear() {
   firstNumber = "";
-  currentNumber = "";
+  secondNumber = "";
   numberHasDecimal = false;
+  isSecondNumber = false;
   currentValue = 0;
   operator = "";
   screen.textContent = "";
@@ -41,55 +45,60 @@ function multiply() {}
 function divide() {}
 
 function handleDigit(e) {
-  currentNumber += e.target.textContent;
-  screen.textContent += e.target.textContent;
+  if (!isSecondNumber) {
+    firstNumber += e.target.textContent;
+    screen.textContent += e.target.textContent;
+  } else {
+    secondNumber += e.target.textContent;
+    screen.textContent += e.target.textContent;
+  }
 }
 
 function evaluate() {
   switch (operator) {
     case "+":
-      currentValue = parseFloat(firstNumber) + parseFloat(currentNumber);
+      currentValue = parseFloat(firstNumber) + parseFloat(secondNumber);
       break;
     case "-":
-      currentValue = parseFloat(firstNumber) - parseFloat(currentNumber);
+      currentValue = parseFloat(firstNumber) - parseFloat(secondNumber);
       break;
     case "*":
-      currentValue = parseFloat(firstNumber) * parseFloat(currentNumber);
+      currentValue = parseFloat(firstNumber) * parseFloat(secondNumber);
       break;
     case "/":
-      currentValue = parseFloat(firstNumber) / parseFloat(currentNumber);
+      currentValue = parseFloat(firstNumber) / parseFloat(secondNumber);
       break;
   }
 }
 
 function handleOperator(e) {
-  //not good
-  if (currentNumber !== "" && operator === "") {
+  if (firstNumber !== "" && operator === "" && secondNumber === "") {
     operator = e.target.textContent;
-    firstNumber = currentNumber;
-    currentNumber = "";
+    isSecondNumber = true;
+    screen.textContent += e.target.textContent;
     numberHasDecimal = false;
-    screen.textContent += operator;
-  } else if (firstNumber !== "" && operator === "" && currentNumber === "") {
-    operator = e.target.textContent;
-    numberHasDecimal = false;
-    screen.textContent += operator;
-  } else if (currentNumber === "" && operator !== "" && firstNumber !== "") {
-    operator = e.target.textContent;
-    screen.target.textContent[-1] = operator;
-  } else if (currentNumber !== "" && operator !== "" && firstNumber !== "") {
+  } else if (firstNumber !== "" && operator !== "" && secondNumber !== "") {
     evaluate();
-    operator = e.target.textContent;
     firstNumber = currentValue.toString();
-    currentNumber = "";
-    numberHasDecimal = false;
     screen.textContent = firstNumber;
+    secondNumber = "";
+    operator = e.target.textContent;
+    screen.textContent += operator;
+    isSecondNumber = true;
+    numberHasDecimal = false;
+  } else if (firstNumber !== "" && operator !== "" && secondNumber === "") {
+    screen.textContent[-1] = e.target.textContent;
+    operator = e.target.textContent;
   }
 }
 
 function handleDecimal(e) {
   if (!numberHasDecimal) {
-    currentNumber += ".";
+    if (!isSecondNumber) {
+      firstNumber += ".";
+    } else {
+      secondNumber += ".";
+    }
     screen.textContent += ".";
     numberHasDecimal = true;
   }
