@@ -26,7 +26,11 @@ function clear() {
   screen.textContent = "";
 }
 
-function backspace() {}
+function backspace() {
+  let slicedString = screen.textContent;
+  slicedString = slicedString.slice(0, -1);
+  screen.textContent = slicedString;
+}
 
 function add() {}
 
@@ -96,6 +100,8 @@ const back = document.querySelector("#back");
 const clearButton = document.querySelector("#clear");
 const decimal = document.querySelector("#decimalpoint");
 const equals = document.querySelector("#equals");
+
+back.addEventListener("click", backspace);
 
 equals.addEventListener("click", operate);
 
