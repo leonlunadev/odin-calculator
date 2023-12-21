@@ -72,6 +72,7 @@ function evaluate() {
 }
 
 function handleOperator(e) {
+  //not switching operator when two are pressed
   if (firstNumber !== "" && operator === "" && secondNumber === "") {
     operator = e.target.textContent;
     isSecondNumber = true;
