@@ -88,7 +88,10 @@ function handleOperator(e) {
     isSecondNumber = true;
     numberHasDecimal = false;
   } else if (firstNumber !== "" && operator !== "" && secondNumber === "") {
-    screen.textContent[-1] = e.target.textContent;
+    let slicedString = screen.textContent;
+    slicedString = slicedString.slice(0, -1);
+    screen.textContent = slicedString;
+    screen.textContent += e.target.textContent;
     operator = e.target.textContent;
   }
 }
